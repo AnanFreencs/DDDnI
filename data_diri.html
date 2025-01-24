@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengisian Data Diri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Isi Data Diri Anda</h1>
+        <form id="dataDiriForm">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+            <label for="usia">Usia:</label>
+            <input type="number" id="usia" name="usia" required>
+            <label for="jenis_kelamin">Jenis Kelamin:</label>
+            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
+            </select>
+            <button type="submit" class="btn">Lanjutkan</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('dataDiriForm').onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {
+                nama: formData.get('nama'),
+                usia: formData.get('usia'),
+                jenis_kelamin: formData.get('jenis_kelamin')
+            };
+            localStorage.setItem('userData', JSON.stringify(data));
+            window.location.href = 'instruksi_sensor.html';
+        };
+    </script>
+</body>
+</html>
