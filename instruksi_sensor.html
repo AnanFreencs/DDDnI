@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruksi Penggunaan Sensor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Instruksi Penggunaan Sensor MAX30102</h1>
+        <p>Silakan letakkan jari Anda pada sensor untuk mengukur data kesehatan Anda.</p>
+        <button id="startSensor" class="btn">Mulai Pengukuran</button>
+    </div>
+    <script>
+        document.getElementById('startSensor').onclick = function() {
+            // Panggil API backend untuk membaca data sensor
+            fetch('/get-sensor-data')
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem('sensorData', JSON.stringify(data));
+                    window.location.href = 'hasil_deteksi.html';
+                });
+        };
+    </script>
+</body>
+</html>
